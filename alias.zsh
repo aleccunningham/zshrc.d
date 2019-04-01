@@ -2,19 +2,8 @@
 # Aliases
 #
 
-# ls(1) substitution
-#
-# https://the.exa.website/
-# https://github.com/supercrabtree/k
-
-alias ls="ls -la"                           # ls:   Pass -la flag by default
-alias l="ls"                                 # l:    List files using `k`
-
-# find(1) substitution
-#
-# https://github.com/sharkdp/fd
-
-#alias find="fd"
+alias l="ls -l"
+alias ll="ls -la --color"
 
 # grep(1) substitution
 #
