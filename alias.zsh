@@ -44,28 +44,8 @@ alias ..='cd ..'                            # ..:     Shorthand to go up one dir
 alias ...='cd ../../'                       # ...:    Go back 2 directory levels
 alias ....='cd ../../../'                   # ....:   Go back 3 directory levels
 
-alias f='open -a Finder ./'                 # f:      Open the directory in Finder
 alias c='clear'                             # c:      Clear the terminal
-alias vim='nvim'                            # vim:    Use nvim instead
 alias reload="exec $SHELL -l"               # reload: Start fresh shell with sourced changes
-
-#
-# Third party applications
-#
-
-# Buku
-
-alias b='buku --suggest'
-
-# Pet
-# https://github.com/knqyf263/pet
-
-alias p="pet"
-
-# Memo
-# https://github.com/mattn/memo
-
-alias m="memo"
 
 #
 # Docker Related
