@@ -7,8 +7,8 @@
 # https://the.exa.website/
 # https://github.com/supercrabtree/k
 
-alias ls="ls -la"                           # ls:   Pass -la flag by default
-alias l="ls"                                 # l:    List files using `k`
+alias l="ls --color"              # l:    List files using `k`
+alias ll=
 
 # find(1) substitution
 #
@@ -102,7 +102,9 @@ alias dcps='docker-compose ps'
 #
 
 alias de='docker exec'
+alias det='docker exec -t'
 alias deit='docker exec -it'
+alias dei='docker exec -i'
 alias da='docker attach'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
@@ -120,7 +122,7 @@ alias dip="docker inspect --format '{{ .NetworkSetting.IPAddress }}'"
 #
 # Docker volumes
 #
-
+0
 alias dv='docker volume'
 alias dvls='docker volume ls'
 alias dvrm='docker volume rm'
