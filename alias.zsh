@@ -7,8 +7,9 @@
 # https://the.exa.website/
 # https://github.com/supercrabtree/k
 
-alias l="ls --color"              # l:    List files using `k`
-alias ll=
+alias l="ls --l"
+alias ll="ls -F --color=auto --show-control-chars"
+alias l.="ls -la --color=auto"
 
 # find(1) substitution
 #
