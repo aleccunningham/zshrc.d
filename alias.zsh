@@ -90,12 +90,15 @@ alias dc="docker-compose"
 # Docker-compose commands
 #
 
-alias dcd='docker-compose down --remove-orphans'
+alias dcd='docker-compose down'
+alias dcdro='docker-compose down --remove-orphans'
+
 alias dcu='docker-compose up'
 alias dcud='docker-compose up -d'
+alias dcub='docker-compose up --build'
+alias dcubd='docker-compose up --build -d'
 alias dcb='docker-compose build'
-alias dcbu='docker-compose up --build'
-alias dcbud='docker-compose up --build -dś'
+
 alias dcps='docker-compose ps'
 
 #
@@ -123,7 +126,7 @@ alias dip="docker inspect --format '{{ .NetworkSetting.IPAddress }}'"
 #
 # Docker volumes
 #
-0
+
 alias dv='docker volume'
 alias dvls='docker volume ls'
 alias dvrm='docker volume rm'
@@ -133,5 +136,3 @@ alias dvrm='docker volume rm'
 #
 
 alias di='docker images'
-alias drmi='docker rmi $()'
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
