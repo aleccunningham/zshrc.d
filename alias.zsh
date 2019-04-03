@@ -2,21 +2,9 @@
 # Aliases
 #
 
-alias l="ls -l"
-alias ll="ls -la --color"
-
-# grep(1) substitution
-#
-# https://github.com/BurntSushi/ripgrep
-# https://docs.rs/regex/1/regex/#syntax
-
-#alias grep="rg"
-
-# sed(1) substitution
-#
-# https://github.com/chmln/sd
-
-#alias sed="sd"
+alias l="ls --l"
+alias ll="ls -F --color=auto --show-control-chars"
+alias l.="ls -la --color=auto"
 
 #
 # tmux
@@ -58,12 +46,14 @@ alias dc="docker-compose"
 # Docker-compose commands
 #
 
-alias dcd='docker-compose down --remove-orphans'
+alias dcd='docker-compose down'
+alias dcdro='docker-compose down --remove-orphans'
 alias dcu='docker-compose up'
 alias dcud='docker-compose up -d'
+alias dcub='docker-compose up --build'
+alias dcubd='docker-compose up --build -d'
 alias dcb='docker-compose build'
-alias dcbu='docker-compose up --build'
-alias dcbud='docker-compose up --build -dś'
+
 alias dcps='docker-compose ps'
 
 #
@@ -71,7 +61,9 @@ alias dcps='docker-compose ps'
 #
 
 alias de='docker exec'
+alias det='docker exec -t'
 alias deit='docker exec -it'
+alias dei='docker exec -i'
 alias da='docker attach'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
@@ -99,5 +91,3 @@ alias dvrm='docker volume rm'
 #
 
 alias di='docker images'
-alias drmi='docker rmi $()'
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
