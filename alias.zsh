@@ -7,9 +7,8 @@
 # https://the.exa.website/
 # https://github.com/supercrabtree/k
 
-alias l="ls --l"
-alias ll="ls -F --color=auto --show-control-chars"
-alias l.="ls -la --color=auto"
+alias l="ls -laGF"
+alias ll="ls -laGFS" # Sort by file size
 
 # find(1) substitution
 #
