@@ -6,6 +6,19 @@ alias l="ls -laGF"
 alias ll="ls -laGFS" # Sort by file size
 
 #
+# Utility commands
+#
+
+alias apti='sudo apt install -y'
+alias aptug='sudo apt upgrade'
+alias aptud='sudo apt update'
+
+alias sapt='sudo apt'
+alias svim='sudo vim'
+alias smv='sudo mv'
+alias scp='sudo cp'
+alias srm='sudo rm'
+
 # tmux
 #
 
