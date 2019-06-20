@@ -85,38 +85,14 @@ aws() {
 		${DOCKER_REPO_PREFIX}/awscli "$@"
 }
 
-# https://github.com/sharkdp/bat
-bat() {
-    docker run -it --rm \
-		-e BAT_THEME \
-		-e BAT_STYLE \
-		-e BAT_TABS \
-		-v "$HOME/.config/bat/config:/root/.config/bat/config" \
-		-v "$(pwd):/myapp" \
-		danlynn/bat $@
-}
-
 # Monitor container resource usage
 # https://github.com/bcicen/ctop
 ctop() {
-	docker run --rm -ti \
-  		--name ctop \
-  		-v /var/run/docker.sock:/var/run/docker.sock \
-  		${DOCKER_REPO_PREFIX}/ctop
-}
-
-# Google cloud cli tool
-# https://cloud.google.com/sdk/gcloud/
-dgcloud() {
-	docker run --rm -it \
-		-v "${HOME}/.gcloud:/root/.config/gcloud" \
-		-v "${HOME}/.ssh:/root/.ssh:ro" \
-		-v "$(command -v docker):/usr/bin/docker" \
+    	docker run --rm -ti \
+		--name ctop \
 		-v /var/run/docker.sock:/var/run/docker.sock \
-		--name gcloud \
-		${DOCKER_REPO_PREFIX}/gcloud "$@"
+  	  	${DOCKER_REPO_PREFIX}/ctop
 }
-
 
 # https://github.com/hishamhm/htop
 htop() {
@@ -146,42 +122,19 @@ http() {
 
 # https://github.com/timvisee/ffsend
 ffsend() {
-  docker run --rm -it \
-    -v $(pwd):/data \
-    timvisee/ffsend "$@"
+  	docker run --rm -it \
+    		-v $(pwd):/data \
+    		timvisee/ffsend "$@"
 }
 
 # https://github.com/donnemartin/gitsome
 gitsome() {
 	docker run --rm -it \
-    --name gitsome \
-    -v $(pwd):/src/ \
+    		--name gitsome \
+   		-v $(pwd):/src/ \
 		-v "${HOME}/.gitsomeconfig:/root/.gitsomeconfig" \
 		-v "${HOME}/.gitconfig:/home/anon/.gitsomeconfigurl" \
 		mariolet/gitsome
-}
-
-# Better SSH
-# https://github.com/mobile-shell/mosh
-mosh() {
-	docker run --rm -it \
-		-e TERM=xterm-256color \
-		-v "${HOME}/.ssh:/root/.ssh" \
-		${DOCKER_REPO_PREFIX}/mosh "$@"
-}
-
-# Terminal based email client
-# http://www.mutt.org/
-mutt() {
-	docker run -it \
-  	-v /etc/localtime:/etc/localtime \
-  	-e GMAIL \
-	  -e GMAIL_NAME \
-  	-e GMAIL_PASS \
-	  -e GMAIL_FROM \
-  	-v "${HOME}/.gnupg:/home/user/.gnupg" \
-  	--name mutt \
-  	jess/mutt
 }
 
 # Networking utility which reads and writes data across network connections
@@ -207,119 +160,10 @@ ip() {
 		${DOCKER_REPO_PREFIX}/iproute2 "$@"
 }
 
-# Postgres database
-pg_start() {
-	docker run -d \
-		--name postgres \
-		-v pg_data:/var/lib/postgresql/data \
-		postgres/postgres
-}
-
-# Stop postgres but persist data
-pg_stop() {
-    docker stop postgres
-}
-
-# Destroy postgres database
-pg_delete() {
-	docker stop postgres &>/dev/null
-	docker rm postgres
-	docker volume rm pg_data
-}
-
-# Full virtualization driver
-# https://www.linux-kvm.org/page/Main_Page
-kvm() {
-	del_stopped kvm
-	relies_on pulseaudio
-
-	# modprobe the module
-	modprobe kvm
-
-	docker run -d \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /run/libvirt:/var/run/libvirt \
-		-e "DISPLAY=unix${DISPLAY}" \
-		--link pulseaudio:pulseaudio \
-		-e PULSE_SERVER=pulseaudio \
-		--group-add audio \
-		--name kvm \
-		--privileged \
-		jessfraz/kvm
-}
-
 # Shellcheck
 # https://github.com/koalaman/shellcheck
 shellcheck() {
-    docker run \
-        -v $(pwd):/mnt \
-        ${DOCKER_REPO_PREFIX}/shellcheck "$@"
-}
-
-
-# Example
-# $ tcpdump -i eth2 port 80
-tcpdump() {
-	docker run \
-		-v "${HOME}/.tcpdump:/data" \
-		--net host \
-		${DOCKER_REPO_PREFIX}/tcpdump
-}
-
-# Main interface for managing virsh guest domains
-# https://linux.die.net/man/1/virsh
-virsh() {
-	relies_on kvm
-
-	docker run -it --rm \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /run/libvirt:/var/run/libvirt \
-		--log-driver none \
-		--net container:kvm \
-		jessfraz/libvirt-client "$@"
-}
-
-# GUI view of virtual machines
-# https://linux.die.net/man/1/virt-viewer
-virt_viewer() {
-	relies_on kvm
-
-	docker run -it --rm \
-    -e PULSE_SERVER=pulseaudio \
-    -e "DISPLAY=unix${DISPLAY}" \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix  \
-		-v /run/libvirt:/var/run/libvirt \
-		--group-add audio \
-		--log-driver none \
-		--net container:kvm \
-		jessfraz/virt-viewer "$@"
-}
-
-# Terminal based twitter client
-# https://github.com/orakaro/rainbowstream
-rainbowstream() {
-	docker run --rm -it \
-		-v "${HOME}/.rainbow_oauth:/root/.rainbow_oauth" \
-		-v "${HOME}/.rainbow_config.json:/root/.rainbow_config.json" \
-		${DOCKER_REPO_PREFIX}/rainbowstream
-}
-
-# https://linux.die.net/man/8/traceroute
-traceroute() {
-	docker run --rm -it \
-		--net host \
-		${DOCKER_REPO_PREFIX}/traceroute
-}
-
-# Robust network protocol analyzer
-# https://www.wireshark.org/
-wireshark() {
-	docker run -d \
-		--name wireshark \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-e "DISPLAY=unix${DISPLAY}" \
-		${DOCKER_REPO_PREFIX}/wireshark
+    	docker run \
+        	-v $(pwd):/mnt \
+        	${DOCKER_REPO_PREFIX}/shellcheck "$@"
 }
