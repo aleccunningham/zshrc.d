@@ -73,17 +73,7 @@ relies_on(){
 ## Applications
 #
 
-DOCKER_REPO_PREFIX=r.alec.cx
-
-# awscli tool for aws web services
-# https://aws.amazon.com/cli/
-aws() {
-	docker run -it --rm \
-		-v "${HOME}/.aws:/root/.aws" \
-		--log-driver none \
-		--name aws \
-		${DOCKER_REPO_PREFIX}/awscli "$@"
-}
+DOCKER_REPO_PREFIX=r.alecc.dev
 
 # Monitor container resource usage
 # https://github.com/bcicen/ctop
