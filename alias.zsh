@@ -85,6 +85,12 @@ alias p="pet"
 alias m="memo"
 
 #
+# Kubernetes
+#
+alias k='kubectl'
+
+
+#
 # Docker Related
 #
 
