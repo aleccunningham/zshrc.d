@@ -84,15 +84,6 @@ ctop() {
   	  	${DOCKER_REPO_PREFIX}/ctop
 }
 
-# https://github.com/hishamhm/htop
-htop() {
-	docker run --rm -it \
-		--pid host \
-		--net none \
-		--name htop \
-		${DOCKER_REPO_PREFIX}/htop
-}
-
 # Generate basic auth for nginx or apache
 # https://httpd.apache.org/docs/2.4/programs/htpasswd.html
 htpasswd() {
