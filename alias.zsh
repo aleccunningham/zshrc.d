@@ -147,3 +147,18 @@ alias dvrm='docker volume rm'
 #
 
 alias di='docker images'
+
+#
+# `docker service`
+#
+
+alias dsls='docker service ls'
+alias dsps='docker service ps'
+alias dsu='docker service update'
+alias dsfu='docker service update --force'
+
+#
+# kubectl
+#
+
+alias kgpo='kubectl get pods'
