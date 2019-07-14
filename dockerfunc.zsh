@@ -81,7 +81,7 @@ ctop() {
     	docker run --rm -ti \
 		--name ctop \
 		-v /var/run/docker.sock:/var/run/docker.sock \
-  	  	${DOCKER_REPO_PREFIX}/ctop
+  	  	quay.io/vektorlab/ctop:latest
 }
 
 # Generate basic auth for nginx or apache
