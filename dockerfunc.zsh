@@ -94,13 +94,6 @@ htpasswd() {
 		${DOCKER_REPO_PREFIX}/htpasswd "$@"
 }
 
-# https://github.com/jakubroztocil/httpie
-http() {
-	docker run -t --rm \
-		--net host \
-		${DOCKER_REPO_PREFIX}/httpie "$@"
-}
-
 # https://github.com/timvisee/ffsend
 ffsend() {
   	docker run --rm -it \
